@@ -1,7 +1,7 @@
 /**
  * Created by shashiHCS on 11/06/15.
  */
-angular.module('myApp',['ngRoute'])
+angular.module('myApp', ['ngRoute', 'ngAnimate'])
     .provider('Weather', function() {
         var apiKey = "";
 
@@ -35,32 +35,36 @@ angular.module('myApp',['ngRoute'])
         }
     })
 
-    .config(function(WeatherProvider) {
+    .config(function($routeProvider, WeatherProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'templates/home.html',
+                controller: 'MainCtrl'
+            })
+            .otherwise({redirectTo: '/'});
+
         WeatherProvider.setApiKey('97f36f3f4b9babc1');
     })
 
-    .controller('PresentlyCtrl', function($scope, $timeout, Weather) {
-        $scope.date = {};
-        $scope.weather = {};
-        var updateTime = function () {
-            $scope.date.raw = new Date();
-            $timeout(updateTime, 1000);
-        }
+    .factory('UserService', function() {
+        var defaults = {
+            location: 'New Delhi'
+        };
+        var service = {
+            user: {},
+            save: function() {
+                sessionStorage.presently =
+                    angular.toJson(service.user);
+            },
+            restore: function() {  // Pull from sessionStorage
+                service.user =
+                    angular.fromJson(sessionStorage.presently) || defaults
+                return service.user;
+            }
+        };
+        // Immediately call restore from the session storage
+        // so we have our user data available immediately
+        service.restore();
 
-        Weather.getWeatherForecast("New Delhi").then(function(data) {
-            $scope.weather.forecast = data;
-            console.log($scope.weather.forecast);
-        }, function(error) {
-
-        });
-
-        $scope.getHighTemp = function(day) {
-            return day.high['celsius'];
-        }
-
-        $scope.getDay = function(day) {
-            return day.date.weekday;
-        }
-
-        updateTime();
-    });
+        return service;
+    })

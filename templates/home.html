@@ -1,0 +1,35 @@
+<div>
+    <button style="margin-top: 30px; float: right;" class="btn-primary" ng-click="openSettingsPage()">{{user.location}}</button>
+    <div id="datetime">
+        <h1>{{date.raw | date:'hh:mm:ss a'}}</h1>
+        <h2>{{date.raw | date:'dd MMMM, EEEE'}}</h2>
+    </div>
+    <div id="forecast">
+        <ul class="row list-unstyled">
+            <li ng-repeat="day in weather.forecast" class="col-md-3">
+                <div ng-class="{today: $index == 0}">
+                    <img class="{{ day.icon }}" ng-src="{{ day.icon_url }}" />
+                    <h3>{{getHighTemp(day)}}</h3>
+                    <h4 ng-if="$index == 0">Now</h4>
+                    <h4 ng-if="$index != 0">{{ getDay(day) }}</h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div ng-show="loaded" class="footerName">
+        <span>shashi</span>
+    </div>
+    <div class="detail-container" ng-class="{'detail-open':isOpened}">
+        <div style="height:100%;">
+            <form style="margin: 30px; width: 50%;" ng-submit="save()">
+                <input type="text"
+                       ng-model="user.location"
+                       placeholder="Enter a location" />
+                <input style="margin-left: 10px;" class="btn btn-primary"
+                       type="submit" value="Save" />
+            </form>
+            <button style="margin-top: -64px; margin-right: 60px; float: right;" class="btn btn-primary" ng-click="closeSettingsPage()">Exit</button>
+        </div>
+    </div>
+
+</div>

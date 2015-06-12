@@ -8,27 +8,20 @@
 </head>
 <body>
 <div class="container">
-    <div ng-controller="PresentlyCtrl">
-        <div id="datetime">
-            <h1>{{date.raw | date:'hh:mm:ss a'}}</h1>
-            <h2>{{date.raw | date:'dd MMMM, EEEE'}}</h2>
-        </div>
-        <div id="forecast">
-            <ul class="row list-unstyled">
-                <li ng-repeat="day in weather.forecast" class="col-md-3">
-                    <div ng-class="{today: $index == 0}">
-                        <img class="{{ day.icon }}" ng-src="{{ day.icon_url }}" />
-                        <h3>{{getHighTemp(day)}}</h3>
-                        <h4 ng-if="$index == 0">Now</h4>
-                        <h4 ng-if="$index != 0">{{ getDay(day) }}</h4>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <div ng-view></div>
 </div>
+
+<!--<script src="./js/angularSupport/jquery-1.11.3.js"></script>-->
+<!--<script src="./js/angularSupport/jquery-ui.min.js"></script>-->
 <script src="./js/angularSupport/angular.min.js"></script>
+<script src="./js/angularSupport/angular-animate.min.js"></script>
 <script src="./js/angularSupport/angular-route.min.js"></script>
+<!--<script src="./js/angularSupport/bootstrap.min.js"></script>-->
+<!--<script src="./js/angularSupport/ui-bootstrap-0.13.0.min.js"></script>-->
+<!--<script src="./js/angularSupport/ui-bootstrap-tpls-0.13.0.min.js"></script>-->
+
 <script src="./js/app.js"></script>
+<script src="./js/Controllers/mainController.js"></script>
+<script src="./js/Controllers/settingsController.js"></script>
 </body>
 </html>

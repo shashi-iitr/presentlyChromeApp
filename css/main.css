@@ -1,5 +1,11 @@
+.container {
+    width: 100%;
+    height: 100%;
+    background: blue;
+}
 #datetime {
     text-align: center;
+    color: #fff;
 }
 #datetime h1 {
     font-size: 6.1em;
@@ -7,6 +13,7 @@
 #forecast ul li {
     font-size: 4.5em;
     text-align: center;
+    color: #fff;
 }
 #forecast ul li h3 {
     font-size: 1.4em;
@@ -14,3 +21,21 @@
 #forecast ul li .today h3 {
     font-size: 1.8em;
 }
+.footerName {
+    float: right;
+    margin-top: 250px;
+}
+.detail-container {
+    background-color: #F4F5F6;
+    position: fixed;
+    right: -450px;
+    width: 450px;
+    height: 100%;
+    top: 50%;
+    bottom: 0px;
+    padding-top: 0px;
+    transition: all 0.15s ease-in-out;
+    z-index: 999; }
+
+.detail-open {
+    right: 0px !important; }

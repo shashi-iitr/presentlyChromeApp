@@ -1,0 +1,24 @@
+{
+  "name": "presently",
+  "version": "0.0.0",
+  "authors": [
+    "shashi kumar <shashi.kumar@hotcocoasoftware.com>"
+  ],
+  "description": "chrome extension",
+  "main": "tab.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "presently"
+  ],
+  "license": "MIT",
+  "homepage": "home.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
